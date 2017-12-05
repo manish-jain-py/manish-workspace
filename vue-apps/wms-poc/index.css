@@ -1,0 +1,43 @@
+#header-container{
+  background-color: #607799;
+  color: white;
+  height: 12vh;
+  width: 100vw;
+  text-align: center;
+  display: table;
+}
+
+#header-content{
+  display: table-cell;
+  vertical-align: middle;
+  width: 100vh;
+}
+
+#additional-header-data{
+  display: table-cell;
+}
+
+#buttons-area{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 15vh;
+  background-color: white;
+  color: white;
+  text-align: center;
+  display: table;
+}
+
+#page-buttons{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#content{
+  height: 70vh;
+  background-color: lightgrey;
+}
+
+
+

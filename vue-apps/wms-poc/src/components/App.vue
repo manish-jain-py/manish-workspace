@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <app-header v-bind:header-title="appHeader"> {{ count }} </app-header>
+    <app-header v-bind:pageTitle="pageTitle" v-bind:warehouse="warehouse"></app-header>
     <app-content>
       <router-view></router-view>
     </app-content>
-    <app-footer v-bind:footer-content="footerContent"></app-footer>
   </div>
 </template>
 
@@ -12,27 +11,23 @@
 
   import appHeader from './app-header.vue'
   import appContent from './app-content.vue'
-  import appFooter from './app-footer.vue'
-  import menuPage from './menu-page.vue'
+  import buttonsArea from './buttons-area.vue'
   import store from './store/index.js'
 
   export default {
     name: 'App',
-    data(){
-      return{
-        appHeader: 'App Page Header',
-        footerContent: 'App Page Footer'
-      }
-    },
     computed: {
-      count: function(){
-        return store.state.count
+      pageTitle: function () {
+        return store.state.pageTitle
+      },
+      warehouse: function () {
+        return store.state.warehouse
       }
     },
     components: {
       appHeader,
       appContent,
-      appFooter
+      buttonsArea
     }
   }
 

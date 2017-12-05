@@ -1,29 +1,18 @@
 <template>
-    <div class="panel panel-default" id="header">
-      <div id="generic-header">
-        {{ headerTitle }}
+    <div class="panel panel-default" id="header-container">
+      <div id="header-content">
+        {{ pageTitle }}
+        <div id="additional-data">
+          Warehouse: {{ warehouse }}
+        </div>
       </div>
-      <slot>Other page specific header content</slot>
     </div>
 </template>
 
 <script>
 
   export default {
-    name: 'appHeader',
-    props: ['headerTitle'],
-    data() {
-      return {
-        genericHeaderContent: 'Generic Header Content'
-      }
-    }
+    props: ['pageTitle', 'warehouse']
   }
 
 </script>
-
-<style>
-  #header{
-    background-color: #607799;
-    height: 10vh;
-  }
-</style>

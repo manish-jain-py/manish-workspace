@@ -3,15 +3,17 @@ import Vue from 'vue'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
-    count: 0
+    pageTitle: '',
+    warehouse: 'Not Selected'
   },
   mutations: {
-    increment (state) {
-      state.count++
+    setPageTitle (state, title) {
+      state.pageTitle = title
+    },
+    setWarehouse (state, location) {
+      state.warehouse = location
     }
   }
 })
-
-export default store

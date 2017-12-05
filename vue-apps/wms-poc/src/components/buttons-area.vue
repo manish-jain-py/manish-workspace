@@ -1,21 +1,17 @@
 <template>
-  <div id="footer">
+  <div id="buttons-area">
     {{ footerContent }}
+    <div id="page-buttons">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
 
   export default{
-    name: 'appFooter',
     props: ['footerContent']
   }
 
 </script>
 
-<style>
-  #footer{
-    background-color: white;
-    height: 20vh;
-  }
-</style>

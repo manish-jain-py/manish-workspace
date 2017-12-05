@@ -1,10 +1,10 @@
 const appConfig = {
 
-  menuIconConfig: [
+  mainMenuConfig: [
     {
       'name': 'Receiving',
       'src': './static/receiving.png',
-      'component': '/sample'
+      'component': '/receiving'
     },
     {
       'name': 'Picking',
@@ -14,7 +14,7 @@ const appConfig = {
     {
       'name': 'Warehouses',
       'src': './static/warehouses.png',
-      'component': '/sample'
+      'component': '/'
     },
     {
       'name': 'Inventory',
@@ -30,6 +30,43 @@ const appConfig = {
       'name': 'Exit',
       'src': './static/exit.png',
       'component': '/menu'
+    }
+  ],
+  receivingMenuConfig: [
+    {
+      'name': 'Purchase Order',
+      'src': './static/purchaseorder.png',
+      'component': '/sample'
+    },
+    {
+      'name': 'Transfer Order',
+      'src': './static/transferorder.png',
+      'component': '/sample'
+    },
+    {
+      'name': 'Putaway',
+      'src': './static/putaway.png',
+      'component': '/'
+    },
+    {
+      'name': 'Post Item Receipt',
+      'src': './static/postitemreceipt.png',
+      'component': '/menu'
+    },
+    {
+      'name': 'Returns',
+      'src': './static/returns.png',
+      'component': '/menu'
+    },
+    {
+      'name': 'Main Menu',
+      'src': './static/mainmenu.png',
+      'component': '/main-menu'
+    },
+    {
+      'name': 'Exit',
+      'src': './static/exit.png',
+      'component': '/'
     }
   ]
 

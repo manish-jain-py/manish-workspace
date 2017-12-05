@@ -1,6 +1,6 @@
 <template>
   <div class="border row">
-    <div class="border col-xs-6 icon-col" v-for="icon in menuIconConfig">
+    <div class="border col-xs-6 icon-col" v-for="icon in menuConfig">
       <menu-icon v-bind:source="icon"></menu-icon>
     </div>
   </div>
@@ -13,17 +13,17 @@
   import store from './store/index.js'
 
   export default {
-    name: 'menuPage',
+    name: 'receivingMenuPage',
     data(){
       return {
-        menuIconConfig: appConfig.menuIconConfig
+        menuConfig: appConfig.receivingMenuConfig
       }
     },
     components: {
       menuIcon
     },
     created: function(){
-      store.commit('increment')
+      store.commit('setPageTitle', 'Receiving Menu Page')
     }
   }
 

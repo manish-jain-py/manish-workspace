@@ -1,18 +1,38 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import menuPage from '../components/menu-page.vue'
+import mainMenuPage from '../components/main-menu-page.vue'
 import samplePage from '../components/sample-page.vue'
+import selectWarehouse from '../components/select-warehouse.vue'
+import receivingMenuPage from '../components/receiving-menu-page.vue'
+import grid from '../components/common-components/grid.vue'
+
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/menu',
+    path: '/',
+    name: 'selectWarehouse',
+    component: selectWarehouse
+  },
+  {
+    path: '/main-menu',
     name: 'MainMenuPage',
-    component: menuPage
+    component: mainMenuPage
   },
   {
     path: '/sample',
     name: 'SamplePage',
     component: samplePage
+  },
+  {
+    path: '/receiving',
+    name: 'ReceivingMenuPage',
+    component: receivingMenuPage
+  },
+  {
+    path: '/grid',
+    name: 'Grid',
+    component: grid
   }
 ]
 
