@@ -4,6 +4,7 @@
     <router-link to="/main-menu">Main Menu</router-link>
     <div>{{ $store.state.dataRecord }}</div>
     <div> {{ poId }} </div>
+    <div> {{ $store.state.items }} </div>
 
     <div id="demo">
       <form id="search">
@@ -50,22 +51,22 @@
     },
     methods: {
       getPObyWH() {
-        axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=125&deploy=1", {
-          headers: {
-            "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
-          },
-          params: {
-            'po_id': this.poId
-          }
-        })
-          .then(response => {
-            if (store.state.items.length == 0) {
-              this.gridData.push(...response.data)
-              store.commit('updateItems', this.gridData)
-            } else{
-              this.gridData = store.state.items
+        if (store.state.items.length != 0){
+          this.gridData = store.state.items
+        } else {
+          axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=125&deploy=1", {
+            headers: {
+              "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
+            },
+            params: {
+              'po_id': this.poId
             }
           })
+            .then(response => {
+              this.gridData.push(...response.data)
+              store.commit('updateItems', this.gridData)
+            })
+        }
       },
       selectItem(entry) {
         //alert(entry['item'] + entry['received'] + entry['remaining'] + entry['line'])

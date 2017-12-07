@@ -63,6 +63,18 @@ export default new Vuex.Store({
     },
     resetItems (state) {
       state.items = []
+    },
+    updateItemSerialNumber (state, obj) {
+      var line = obj.line
+      var serialNumber = obj.val
+      console.log(state.items)
+      state.items[line].serialnumber = serialNumber
+      console.log(state.items)
+    },
+    updateItemQuantity (state, obj){
+      var line = obj.line
+      var newReceivedQuantity = parseInt(obj.val)
+      state.items[line].received = parseInt(state.items[line].received) + newReceivedQuantity
     }
   }
 })
