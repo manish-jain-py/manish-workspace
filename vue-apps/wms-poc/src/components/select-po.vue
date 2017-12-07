@@ -1,7 +1,8 @@
 <template>
   <div>
-    I am a test component
+
     <router-link to="/main-menu">Main Menu</router-link>
+    <div>{{ $store.state.dataRecord }}</div>
 
     <div id="demo">
       <form id="search">
@@ -10,7 +11,8 @@
       <demo-grid
         :data="gridData"
         :columns="gridColumns"
-        :filter-key="searchQuery">
+        :filter-key="searchQuery"
+        @onClickFunction="updatePO">
       </demo-grid>
     </div>
 
@@ -27,12 +29,16 @@
       return {
         searchQuery: '',
         gridColumns: ['poId', 'name'],
-        gridData: [
-          { 'poId': 923, name: 'AMEX', uid: 1 },
-          { 'poId': 895, name: 'Staples', uid: 11  },
-          { 'poId': 947, name: 'Target', uid: 12  },
-          { 'poId': 21853, name: 'Walmart', uid: 31  }
-        ]
+        gridData: [],
+        poId: -1,
+        extraParams: {}
+      }
+    },
+    computed: {
+      warehouseObject: {
+        get: function(){
+          return store.state.warehouse
+        }
       }
     },
     components: {
@@ -43,24 +49,30 @@
         axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=123&deploy=1", {
           headers: {
             "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
+          },
+          params: {
+            'warehouse': this.warehouseObject.value
           }
         })
           .then(response => {
-            console.log(typeof response.data)
-            console.log(this.gridData)
             this.gridData = response.data
-            console.log(this.gridData)
-            for (var i in response.data){
-              console.log(response.data[i])
-            }
           })
+      },
+      updatePO(entry) {
+        this.poId = entry['poId']
+        this.extraParams['fromId'] = entry['poId']
+        store.commit('addExtraParamsToRecord', this.extraParams)
+        this.$router.push({ path: 'select-item' })
       }
     },
     created: function(){
-      store.commit('setPageTitle', 'Test Page')
+      store.commit('setPageTitle', 'Select Purchase Order')
+      store.commit('resetDataRecord')
+      store.commit('setRecordType', 'itemreceipt')
+      store.commit('setCreationType', 'transform')
+      store.commit('resetItems')
       this.getPObyWH()
     }
   }
 
 </script>
-

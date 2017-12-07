@@ -36,7 +36,7 @@ const appConfig = {
     {
       'name': 'Purchase Order',
       'src': './static/purchaseorder.png',
-      'component': '/sample'
+      'component': '/select-po'
     },
     {
       'name': 'Transfer Order',

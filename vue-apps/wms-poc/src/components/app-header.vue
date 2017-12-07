@@ -3,7 +3,7 @@
       <div id="header-content">
         {{ pageTitle }}
         <div id="additional-data">
-          Warehouse: {{ warehouse }}
+          Warehouse: {{ warehouse.label }}
         </div>
       </div>
     </div>

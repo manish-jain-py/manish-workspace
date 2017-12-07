@@ -12,11 +12,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="entry in filteredData">
+    <tr v-on:click="onClickFunction(entry)" v-for="entry in filteredData">
       <td v-for="key in columns">
-        <div v-on:click="showAlert(entry['uid'])">
           {{ entry[key] }}
-        </div>
       </td>
     </tr>
     </tbody>
@@ -75,8 +73,8 @@
         this.sortKey = key
         this.sortOrders[key] = this.sortOrders[key] * -1
       },
-      showAlert: function (message) {
-        console.log(message)
+      onClickFunction: function (entry) {
+        this.$emit('onClickFunction', entry)
       }
     }
 

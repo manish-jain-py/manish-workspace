@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="dropdown-container">
-      <v-select v-model="warehouse" :options="list_warehouses"></v-select>
+      <v-select v-model="warehouse" :on-change="changeWarehouse" :options="list_warehouses"></v-select>
     </div>
     <buttons-area>
       <router-link to="/main-menu"><button class="btn btn-primary">Next</button></router-link>
@@ -22,19 +22,13 @@
 
     data() {
       return {
-        list_warehouses: ['Select Warehouse']
+        list_warehouses: [{'label': 'Select Warehouse', 'value': -1}]
       }
     },
     computed: {
       warehouse: {
         get: function(){
           return store.state.warehouse
-        },
-        set: function (newWarehouse) {
-          if (newWarehouse == 'Select Warehouse'){
-            newWarehouse = 'Not Selected'
-          }
-          store.commit('setWarehouse', newWarehouse)
         }
       }
     },
@@ -46,8 +40,14 @@
           }
         })
           .then(response => {
-            this.list_warehouses.push(...response.data.name)
+            this.list_warehouses.push(...response.data)
           })
+      },
+      changeWarehouse(newWarehouse) {
+        if (newWarehouse == 'Select Warehouse'){
+          newWarehouse = {'label': 'Select Warehouse', 'value': -1}
+        }
+        store.commit('setWarehouse', newWarehouse)
       }
     },
     created: function(){
