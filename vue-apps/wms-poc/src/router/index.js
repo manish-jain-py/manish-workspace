@@ -7,6 +7,7 @@ import receivingMenuPage from '../components/receiving-menu-page.vue'
 import selectPO from '../components/select-po.vue'
 import selectItem from '../components/select-item.vue'
 import itemDetails from '../components/item-details.vue'
+import response from '../components/response.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/item-details',
     name: 'ItemDetails',
     component: itemDetails
+  },
+  {
+    path: '/response',
+    name: 'Response,',
+    component: response
   }
 ]
 

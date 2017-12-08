@@ -29,7 +29,7 @@
     <div>
       <buttons-area>
         <router-link to="/select-item"><button @click="updateItemDetails" class="btn btn-primary">Receive more items</button></router-link>
-        <button class="btn btn-primary">Post Item Receipt</button>
+        <button @click="postReceipt" class="btn btn-primary">Post Item Receipt</button>
       </buttons-area>
     </div>
 
@@ -59,21 +59,9 @@
           return store.state.items[this.line].item
         }
       },
-      itemSerialNumber: {
-        get: function() {
-          return store.state.items[this.line].serialnumber
-        },
-        set: function (newValue) {
-          store.commit('updateItemSerialNumber', {line: this.line, val: newValue})
-        }
-      },
-      received: {
+      dataRecord: {
         get: function () {
-          return null
-          //return store.state.items[this.line].received
-        },
-        set: function (newValue) {
-          store.commit('updateItemQuantity', {line: this.line, val: newValue})
+          return store.state.dataRecord
         }
       }
     },
@@ -83,6 +71,25 @@
           store.commit('updateItemQuantity', {line: this.line, val: this.qty})
           store.commit('updateItemSerialNumber', {line: this.line, val: this.lot})
         }
+      },
+      postReceipt: function () {
+        this.updateItemDetails()
+        store.commit('addItemsSublist')
+        axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=126&deploy=1", {
+          headers: {
+            "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
+          },
+          params: {
+            'data_record': this.dataRecord
+          }
+        })
+          .then(response => {
+            console.log(response.data)
+            this.$router.push({
+              path: 'response',
+              query: {response_url: response.data}
+            })
+          })
       }
     },
     components: {

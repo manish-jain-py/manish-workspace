@@ -75,6 +75,10 @@ export default new Vuex.Store({
       var line = obj.line
       var newReceivedQuantity = parseInt(obj.val)
       state.items[line].received = parseInt(state.items[line].received) + newReceivedQuantity
+      state.items[line].newReceived = parseInt(state.items[line].newReceived) + newReceivedQuantity
+    },
+    addItemsSublist (state) {
+      state.dataRecord.items = state.items
     }
   }
 })
