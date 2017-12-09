@@ -29,7 +29,6 @@
       return {
         searchQuery: '',
         gridColumns: ['poId', 'name'],
-        gridData: [],
         poId: -1,
         extraParams: {}
       }
@@ -39,6 +38,11 @@
         get: function(){
           return store.state.warehouse
         }
+      },
+      gridData: {
+        get: function () {
+          return store.state.gridData
+        }
       }
     },
     components: {
@@ -46,17 +50,19 @@
     },
     methods: {
       getPObyWH() {
-        axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=123&deploy=1", {
-          headers: {
-            "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
-          },
-          params: {
-            'warehouse': this.warehouseObject.value
-          }
-        })
-          .then(response => {
-            this.gridData = response.data
+        if (this.gridData.length == 0){
+          axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=123&deploy=1", {
+            headers: {
+              "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
+            },
+            params: {
+              'warehouse': this.warehouseObject.value
+            }
           })
+            .then(response => {
+              this.gridData = response.data
+            })
+        }
       },
       updatePO(entry) {
         this.poId = entry['poId']

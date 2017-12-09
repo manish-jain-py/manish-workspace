@@ -49,11 +49,12 @@
             "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
           },
           params: {
-            'warehouse': this.warehouseObject.value
+            'warehouse': this.warehouse.value
           }
         })
           .then(response => {
-            this.gridData = response.data
+            store.commit('updateGridData', response.data)
+            //this.gridData = response.data
           })
       },
       changeWarehouse(newWarehouse) {
@@ -61,6 +62,7 @@
           newWarehouse = {'label': 'Select Warehouse', 'value': -1}
         }
         store.commit('setWarehouse', newWarehouse)
+        this.getPObyWH()
       }
     },
     created: function(){

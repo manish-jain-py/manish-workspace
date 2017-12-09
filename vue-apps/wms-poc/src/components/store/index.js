@@ -16,7 +16,8 @@ export default new Vuex.Store({
       'sublist2': [{}],
       'extraParams': {}
     },
-    items: []
+    items: [],
+    gridData: []
   },
   mutations: {
     setPageTitle (state, title) {
@@ -79,6 +80,10 @@ export default new Vuex.Store({
     },
     addItemsSublist (state) {
       state.dataRecord.items = state.items
+    },
+    updateGridData (state, arr) {
+      state.gridData = []
+      state.gridData.push(...arr)
     }
   }
 })
