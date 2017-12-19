@@ -5,38 +5,56 @@ const appConfig = {
     pages: {
       page1: {
         title: 'Page 1',
-        componentList: ['comp1', 'comp2']
+        componentList: ['nameTextBox', 'ageTextBox', 'page2Link']
       },
       page2: {
         title: 'Page 2',
-        componentList: ['comp3', 'comp4']
+        componentList: ['salTextBox', 'deptTextBox', 'page1Link']
       }
     }
   },
   components: {
-    'comp1': {
+    'nameTextBox': {
       type: 'TextBox',
       name: 'name',
       label: 'Enter Name',
       placeholder: 'Firstname'
     },
-    'comp2': {
+    'ageTextBox': {
       type: 'TextBox',
       name: 'age',
       label: 'Enter Age',
       placeholder: 'Age'
     },
-    'comp3': {
+    'salTextBox': {
       type: 'TextBox',
-      name: 'Component 3',
-      label: 'Component 3',
-      placeholder: 'Finally something worked'
+      name: 'salary',
+      label: 'Enter Salary',
+      placeholder: 'Salary'
     },
-    'comp4': {
+    'deptTextBox': {
       type: 'TextBox',
-      name: 'Component 4',
-      label: 'Component 4',
-      placeholder: 'Finally something worked'
+      name: 'department',
+      label: 'Enter Department',
+      placeholder: 'Department'
+    },
+    'page1Link': {
+      type: 'ActionButton',
+      name: 'Component 5',
+      label: 'Go to Page 1',
+      actionType: 'Navigation',
+      params: {
+        pageId: 'page1'
+      }
+    },
+    'page2Link': {
+      type: 'ActionButton',
+      name: 'Component 6',
+      label: 'Go to Page 2',
+      actionType: 'Navigation',
+      params: {
+        pageId: 'page2'
+      }
     }
   }
 
