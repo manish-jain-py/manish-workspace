@@ -40,6 +40,7 @@ export default new Vuex.Store({
     addExtraParamsToRecord (state, paramsObject) {
       for (var key in paramsObject) {
         state.dataRecord.extraParams[key] = paramsObject[key]
+        console.log(state.dataRecord)
       }
     },
 
@@ -53,7 +54,7 @@ export default new Vuex.Store({
       var sublistName = sublistDetails.sublistName
       var sublistObject = sublistDetails.sublistObject
 
-      // create a new sublist and add ... or add to the existing sublist
+      // create a new sublist and add ... or add to the existing sublnewWarehouse = {'label': 'Select Warehouse', 'value': -1}ist
       if (state.dataRecord.sublistNames.indexOf(sublistName) === -1) {
         state.dataRecord.sublistNames.push(sublistName)
         state.dataRecord.sublists[sublistName] = []

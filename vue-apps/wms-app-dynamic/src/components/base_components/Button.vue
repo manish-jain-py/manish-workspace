@@ -8,6 +8,8 @@
 
   import store from '../store/index'
   import appConfig from '../../app_config.js'
+  import components from '../../component_config.js'
+
   export default {
 
     name: 'ActionButton',
@@ -29,13 +31,13 @@
 
       performAction: function () {
 
-        // For forwarding the form
+        // For forwarding and submitting the form
         if (this.propsObject.actionType == 'ForwardForm' || this.propsObject.actionType == 'SubmitForm' ) {
 
           var allComponents = appConfig.app.pages[this.parentPage].componentList
 
           for (var component in allComponents) {
-            var fieldDetails = appConfig.components[allComponents[component]]
+            var fieldDetails = components[allComponents[component]]
 
             if (fieldDetails.parentRecord && fieldDetails.fieldName) {
 

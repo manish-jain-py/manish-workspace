@@ -8,6 +8,7 @@ import selectPO from '../components/select-po.vue'
 import selectItem from '../components/select-item.vue'
 import itemDetails from '../components/item-details.vue'
 import response from '../components/response.vue'
+import experiment from '../components/experiment.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/response',
     name: 'Response,',
     component: response
+  },
+  {
+    path: '/experiment',
+    name: 'Experiment',
+    component: experiment
   }
 ]
 

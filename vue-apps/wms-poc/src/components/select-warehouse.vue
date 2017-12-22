@@ -54,7 +54,6 @@
         })
           .then(response => {
             store.commit('updateGridData', response.data)
-            //this.gridData = response.data
           })
       },
       changeWarehouse(newWarehouse) {

@@ -2,6 +2,9 @@
   <div>
 
     <router-link to="/main-menu">Main Menu</router-link>
+    <div>{{ $store.state.dataRecord }}</div>
+    <div> {{ poId }} </div>
+    <div> {{ pages }} </div>
 
     <div id="demo">
       <form id="search">
@@ -11,7 +14,7 @@
         :data="gridData"
         :columns="gridColumns"
         :filter-key="searchQuery"
-        @onClickFunction="selectItem">
+        @onClickFunction="sayHi">
       </demo-grid>
     </div>
 
@@ -22,12 +25,13 @@
 
   import store from './store/index.js'
   import demoGrid from './common-components/grid.vue'
+  import pages from './app-config'
 
   export default {
     data: function(){
       return {
         searchQuery: '',
-        gridColumns: ['item', 'received', 'remaining'],
+        gridColumns: pages[0].components[0].labels,
         gridData: []
       }
     },
@@ -39,8 +43,11 @@
       },
       poId: {
         get: function() {
-          return store.state.dataRecord.extraParams.fromId
+          return "947"
         }
+      },
+      pages: function() {
+        return pages
       }
     },
     components: {
@@ -48,10 +55,10 @@
     },
     methods: {
       getPObyWH() {
-        if (store.state.items.length != 0){
+        if (false){
           this.gridData = store.state.items
         } else {
-          axios.get("https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=125&deploy=1", {
+          axios.get(pages[0].components[0].sourceDataAction, {
             headers: {
               "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
             },
@@ -65,8 +72,9 @@
             })
         }
       },
-      selectItem(entry) {
-        this.$router.push({path: 'item-details', query: {line: entry['line']}})
+      sayHi(entry) {
+        alert(entry['item'] + entry['received'] + entry['remaining'] + entry['line'])
+        //this.$router.push({path: 'item-details', query: {line: entry['line']}})
       }
     },
     created: function(){
