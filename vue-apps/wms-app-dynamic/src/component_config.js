@@ -182,7 +182,7 @@ const components = {
 
 
     'warehouseDropdown': {
-      type: 'Dropdown',
+      type: 'DropDown',
       name: 'warehouse',
       label: 'Select Warehouse',
       placeholder: '',

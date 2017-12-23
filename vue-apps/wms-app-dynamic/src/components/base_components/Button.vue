@@ -1,10 +1,14 @@
 <template>
+
   <div class="form-group">
-    <button id="propsObject.name" class="btn btn-primary" @click="performAction">{{ propsObject.label }}</button>
+    <button id="propsObject.name" class="btn btn-primary btn-wms" @click="performAction">{{ propsObject.label }}</button>
   </div>
+
 </template>
 
 <script>
+
+  import settings from '../../config/settings.js'
 
   import store from '../store/index'
   import appConfig from '../../app_config.js'
@@ -13,6 +17,7 @@
   export default {
 
     name: 'ActionButton',
+
     data: function () {
       return {
         parentRecord: '',
@@ -21,18 +26,21 @@
         standardFieldsObject: {}
       }
     },
+
     computed: {
       parentPage: function () {
         return store.state.currentPage
       },
     },
+
     props: ['propsObject'],
+
     methods: {
 
       performAction: function () {
 
         // For forwarding and submitting the form
-        if (this.propsObject.actionType == 'ForwardForm' || this.propsObject.actionType == 'SubmitForm' ) {
+        if (this.propsObject.actionType == 'ForwardForm' || this.propsObject.actionType == 'SubmitForm') {
 
           var allComponents = appConfig.app.pages[this.parentPage].componentList
 
@@ -43,7 +51,7 @@
             if (fieldDetails.parentRecord && fieldDetails.fieldName) {
 
               // update parent data record name
-              if (fieldDetails.parentRecord){
+              if (fieldDetails.parentRecord) {
                 if (!this.parentRecord) {
                   this.parentRecord = fieldDetails.parentRecord
                 }
@@ -59,7 +67,7 @@
                   for (var ind in fieldDetails.hiddenFieldsArray) {
                     this.sublistObject[fieldDetails.hiddenFieldsArray[ind]] = document.getElementById(fieldDetails.hiddenFieldsArray[ind]).value
                   }
-                } else{
+                } else {
                   this.sublistObject[fieldDetails.fieldName] = document.getElementById(fieldDetails.name).value
                 }
               } else {
@@ -67,7 +75,7 @@
                   for (var ind in fieldDetails.hiddenFieldsArray) {
                     this.standardFieldsObject[fieldDetails.hiddenFieldsArray[ind]] = document.getElementById(fieldDetails.hiddenFieldsArray[ind]).value
                   }
-                } else{
+                } else {
                   this.standardFieldsObject[fieldDetails.fieldName] = document.getElementById(fieldDetails.name).value
                 }
               }
@@ -88,7 +96,7 @@
           if (this.propsObject.actionType == 'SubmitForm') {
             axios.get(this.propsObject.submitAction, {
               headers: {
-                "Authorization": "NLAuth nlauth_account=TSTDRV1796256, nlauth_email=majain@netsuite.com, nlauth_signature=manish@netsuite123A"
+                "Authorization": settings.account.authorization
               },
               params: {
                 'dataRecord': store.state.dataRecord
@@ -103,6 +111,7 @@
 
         }
 
+        // Navigate to the target page
         var toPageId = this.propsObject.params.pageId
         store.commit('setCurrentPage', toPageId)
 
@@ -110,4 +119,5 @@
     }
 
   }
+
 </script>

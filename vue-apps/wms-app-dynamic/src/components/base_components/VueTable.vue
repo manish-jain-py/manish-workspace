@@ -1,4 +1,5 @@
 <template>
+
   <table>
     <thead>
     <tr>
@@ -19,17 +20,21 @@
     </tr>
     </tbody>
   </table>
+
 </template>
 
 <script>
 
   export default {
+
     name: 'VueTable',
+
     props: {
       data: Array,
       columns: Array,
       filterKey: String
     },
+
     data: function () {
       var sortOrders = {}
       this.columns.forEach(function (key) {
@@ -40,6 +45,7 @@
         sortOrders: sortOrders
       }
     },
+
     computed: {
       filteredData: function () {
         var sortKey = this.sortKey
@@ -63,11 +69,13 @@
         return data
       }
     },
+
     filters: {
       capitalize: function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
       }
     },
+
     methods: {
       sortBy: function (key) {
         this.sortKey = key
@@ -91,6 +99,7 @@
 
   table {
     margin-top: 10px;
+    margin-left: 10px;
     border: 2px solid #607799;
     border-radius: 3px;
     background-color: #fff;

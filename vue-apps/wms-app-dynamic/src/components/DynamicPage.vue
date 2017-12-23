@@ -1,37 +1,42 @@
 <template>
+
   <div id="content">
     <app-header v-bind:pageTitle="title"></app-header>
-    <div>{{ dataRecord }}</div>
+    <!--<div>{{ dataRecord }}</div>-->
     <div v-for="component in pageComponents">
-      <component :key="components[component].name" v-bind:is="components[component].type" v-bind:propsObject="components[component]"></component>
+      <component :key="components[component].name" v-bind:is="components[component].type"
+                 v-bind:propsObject="components[component]"></component>
     </div>
   </div>
+
 </template>
 
 <script>
 
-  import Vue from 'vue'
   import appConfig from '../app_config.js'
   import components from '../component_config.js'
   import store from '../components/store'
 
+  // import all base components
   import TextBox from '../components/base_components/TextBox.vue'
   import ActionButton from '../components/base_components/Button.vue'
-  import Dropdown from '../components/base_components/Dropdown.vue'
+  import DropDown from './base_components/DropDown.vue'
   import DataTable from '../components/base_components/DataTable.vue'
   import HiddenValuesSet from '../components/base_components/HiddenValuesSet.vue'
   import Anchor from '../components/base_components/Anchor.vue'
-
   import AppHeader from '../components/base_components/AppHeader.vue'
 
   export default {
+
     name: store.state.currentPage,
-    data: function(){
+
+    data: function () {
       return {
         components: components,
         appConfig: appConfig
       }
     },
+
     computed: {
       currentPage: function () {
         return store.state.currentPage
@@ -46,20 +51,23 @@
         return store.state.dataRecord
       }
     },
+
     components: {
       TextBox,
       ActionButton,
-      Dropdown,
+      DropDown,
       AppHeader,
       DataTable,
       HiddenValuesSet,
       Anchor
     },
+
     created: function () {
-      if (!store.state.currentPage){
+      if (!store.state.currentPage) {
         store.commit('setCurrentPage', appConfig.app.homePage)
       }
     }
+
   }
 
 </script>

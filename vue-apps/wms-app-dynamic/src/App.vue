@@ -6,7 +6,7 @@
 
 <script>
 
- import DynamicContent from './components/DynamicPage.vue'
+  import DynamicContent from './components/DynamicPage.vue'
 
   export default {
     name: 'App',

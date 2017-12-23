@@ -35,6 +35,14 @@
 }
 
 #content{
-  height: 84vh;
+  height: 100vh;
   background-color: lightgrey;
+}
+
+.btn-wms{
+  margin: 10px;
+}
+
+.table-search-query{
+  margin-left: 10px;
 }
