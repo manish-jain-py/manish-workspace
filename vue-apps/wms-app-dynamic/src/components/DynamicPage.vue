@@ -19,6 +19,8 @@
   import ActionButton from '../components/base_components/Button.vue'
   import Dropdown from '../components/base_components/Dropdown.vue'
   import DataTable from '../components/base_components/DataTable.vue'
+  import HiddenValuesSet from '../components/base_components/HiddenValuesSet.vue'
+  import Anchor from '../components/base_components/Anchor.vue'
 
   import AppHeader from '../components/base_components/AppHeader.vue'
 
@@ -49,7 +51,9 @@
       ActionButton,
       Dropdown,
       AppHeader,
-      DataTable
+      DataTable,
+      HiddenValuesSet,
+      Anchor
     },
     created: function () {
       if (!store.state.currentPage){

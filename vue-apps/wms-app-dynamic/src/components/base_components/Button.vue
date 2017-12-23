@@ -37,6 +37,7 @@
           var allComponents = appConfig.app.pages[this.parentPage].componentList
 
           for (var component in allComponents) {
+            console.log(components)
             var fieldDetails = components[allComponents[component]]
 
             if (fieldDetails.parentRecord && fieldDetails.fieldName) {
@@ -54,9 +55,21 @@
                   this.sublistName = fieldDetails.sublistName
                   this.sublistObject = {}
                 }
-                this.sublistObject[fieldDetails.fieldName] = document.getElementById(fieldDetails.name).value
+                if (fieldDetails.type === 'HiddenValuesSet') {
+                  for (var ind in fieldDetails.hiddenFieldsArray) {
+                    this.sublistObject[fieldDetails.hiddenFieldsArray[ind]] = document.getElementById(fieldDetails.hiddenFieldsArray[ind]).value
+                  }
+                } else{
+                  this.sublistObject[fieldDetails.fieldName] = document.getElementById(fieldDetails.name).value
+                }
               } else {
-                this.standardFieldsObject[fieldDetails.fieldName] = document.getElementById(fieldDetails.name).value
+                if (fieldDetails.type === 'HiddenValuesSet') {
+                  for (var ind in fieldDetails.hiddenFieldsArray) {
+                    this.standardFieldsObject[fieldDetails.hiddenFieldsArray[ind]] = document.getElementById(fieldDetails.hiddenFieldsArray[ind]).value
+                  }
+                } else{
+                  this.standardFieldsObject[fieldDetails.fieldName] = document.getElementById(fieldDetails.name).value
+                }
               }
             }
           }
@@ -69,9 +82,7 @@
             store.commit('addFieldsToRecord', this.standardFieldsObject)
           }
           if (this.sublistName) {
-            console.log(store.state.dataRecord)
             store.commit('addSublistToRecord', {sublistName: this.sublistName, sublistObject: this.sublistObject})
-            console.log(store.state.dataRecord)
           }
 
           if (this.propsObject.actionType == 'SubmitForm') {
@@ -84,7 +95,9 @@
               }
             })
               .then(response => {
-                console.log(response.data)
+                var link = 'https://system.na2.netsuite.com/' + response.data
+                store.commit('updateRecordLink', link)
+                console.log(link)
               })
           }
 

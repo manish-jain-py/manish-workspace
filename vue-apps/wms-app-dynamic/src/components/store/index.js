@@ -12,7 +12,8 @@ export default new Vuex.Store({
       'standardFields': {},
       'sublistNames': [],
       'sublists': {},
-      'extraParams': {}
+      'extraParams': {},
+      'recordLink': ''
     },
     componentsCounter: 0
   },
@@ -64,6 +65,10 @@ export default new Vuex.Store({
 
     incrementComponentsCounter (state) {
       state.componentsCounter += 1
+    },
+
+    updateRecordLink (state, link) {
+      state.dataRecord.recordLink = link
     }
 
   }

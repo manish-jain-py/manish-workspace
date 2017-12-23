@@ -234,6 +234,86 @@ const components = {
       sublistName: ''
     },
 
+    'itemTable': {
+      type: 'DataTable',
+      name: 'itemTable',
+      label: 'Select Item',
+      placeholder: '',
+      parentRecord: '',
+      fieldName: '',
+      sublistName: '',
+      tableColumns: ['item', 'received', 'remaining'],
+      getDataAction: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=125&deploy=1',
+      getDataActionParamsType: 'extraParams',
+      getDataActionParamsKeys: ['poTable'],
+      extraParam: true  // this value should be stored as extra param in the state
+    },
+
+    'buttonGotoItemDetails': {
+      type: 'ActionButton',
+      name: 'buttonGotoItemDetails',
+      label: 'Next',
+      actionType: 'ForwardForm',
+      params: {
+        pageId: 'pageEnterItemDetails'
+      },
+      parentRecord: '',
+      fieldName: '',
+      sublistName: ''
+    },
+
+    'textBoxQuantity': {
+      type: 'TextBox',
+      name: 'textBoxQuantity',
+      label: 'Enter Quantity to be received',
+      placeholder: 'Quantity',
+      parentRecord: 'itemreceipt',
+      fieldName: 'quantity',
+      sublistName: 'item'
+    },
+
+    'textBoxSerial': {
+      type: 'TextBox',
+      name: 'textBoxSerial',
+      label: 'Enter LOT Number',
+      placeholder: 'Lot Number',
+      parentRecord: 'itemreceipt',
+      fieldName: 'serialnumbers',
+      sublistName: 'item'
+    },
+
+    'hiddenValArrayItemDetails': {
+      type: 'HiddenValuesSet',
+      name: 'hiddenValArrayItemDetails',
+      hiddenFieldsArray: ['line', 'item'],
+      getDataAction: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=131&deploy=1',
+      getDataActionParamsType: 'state',
+      getDataActionParamsKeys: ['dataRecord'],
+      parentRecord: 'itemreceipt',
+      fieldName: 'hiddenfields',
+      sublistName: 'item'
+    },
+
+    'postItemReceiptSubmitButton': {
+      type: 'ActionButton',
+      name: 'postItemReceiptSubmitButton',
+      label: 'Post Item Receipt',
+      actionType: 'SubmitForm',
+      params: {
+        pageId: 'pageSuccessInfo'
+      },
+      parentRecord: '',
+      fieldName: '',
+      sublistName: '',
+      submitAction: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=126&deploy=1'
+  },
+
+    'receiptRecordLink': {
+      type: 'Anchor',
+      linkType: 'recordLink',
+      label: 'Receipt Record'
+    }
+
 }
 
 export default components

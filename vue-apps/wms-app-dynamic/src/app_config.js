@@ -31,7 +31,15 @@ const appConfig = {
       },
       pageSelectItem: {
         title: 'Select Item',
-        componentList: []
+        componentList: ['itemTable', 'buttonGotoItemDetails', 'postItemReceiptSubmitButton']
+      },
+      pageEnterItemDetails: {
+        title: 'Enter Item Details',
+        componentList: ['hiddenValArrayItemDetails', 'textBoxQuantity', 'textBoxSerial', 'buttonGotoItems', 'postItemReceiptSubmitButton']
+      },
+      pageSuccessInfo: {
+        title: 'INFO',
+        componentList: ['receiptRecordLink']
       }
 
     }
