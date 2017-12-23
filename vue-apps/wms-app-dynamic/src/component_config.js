@@ -179,6 +179,12 @@ const components = {
       sublistName: 'emergencycontact'
     },
 
+    'employeeRecordLink': {
+      type: 'Anchor',
+      linkType: 'recordLink',
+      label: 'Employee Record'
+    },
+
 
 
     'warehouseDropdown': {
@@ -199,7 +205,7 @@ const components = {
       label: 'Next',
       actionType: 'ForwardForm',
       params: {
-        pageId: 'pageSelectPO'
+        pageId: 'mainMenuPage'
       },
       parentRecord: '',
       fieldName: '',
@@ -312,6 +318,48 @@ const components = {
       type: 'Anchor',
       linkType: 'recordLink',
       label: 'Receipt Record'
+    },
+
+    'warehouseMenuIcon': {
+      type: 'MenuIcon',
+      label: 'Warehouse',
+      src: 'static/warehouses.png',
+      targetPageId: 'pageSelectWarehouse'
+    },
+
+    'receivingMenuIcon': {
+      type: 'MenuIcon',
+      label: 'Receiving',
+      src: 'static/receiving.png',
+      targetPageId: 'pageSelectPO'
+    },
+
+    'pickingMenuIcon': {
+      type: 'MenuIcon',
+      label: 'Picking',
+      src: 'static/picking.png',
+      targetPageId: 'pageSelectWarehouse'
+    },
+
+    'inventoryMenuIcon': {
+      type: 'MenuIcon',
+      label: 'Inventory',
+      src: 'static/warehouses.png',
+      targetPageId: 'pageSelectWarehouse'
+    },
+
+    'mainMenuIcon': {
+      type: 'MenuIcon',
+      label: 'Main Menu',
+      src: 'static/warehouses.png',
+      targetPageId: 'pageSelectWarehouse'
+    },
+
+    'exitMenuIcon': {
+      type: 'MenuIcon',
+      label: 'Exit',
+      src: 'static/warehouses.png',
+      targetPageId: 'pageSelectWarehouse'
     }
 
 }

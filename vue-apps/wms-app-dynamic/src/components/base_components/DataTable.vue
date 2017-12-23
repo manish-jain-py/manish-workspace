@@ -67,6 +67,9 @@
         })
           .then(response => {
             console.log(response.data)
+            for (var key in response.data){
+              response.data[key].clicked = false
+            }
             this.gridData.push(...response.data)
           })
       },

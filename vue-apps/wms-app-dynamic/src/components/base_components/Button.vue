@@ -1,6 +1,6 @@
 <template>
 
-  <div class="form-group">
+  <div class="col-md-1 form-group button-container">
     <button id="propsObject.name" class="btn btn-primary btn-wms" @click="performAction">{{ propsObject.label }}</button>
   </div>
 

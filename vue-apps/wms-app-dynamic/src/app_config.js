@@ -2,6 +2,7 @@ const appConfig = {
 
   app: {
     homePage: 'pageSelectWarehouse',
+    //homePage: 'page1',
     pages: {
       page1: {
         title: 'Page 1',
@@ -17,7 +18,7 @@ const appConfig = {
       },
       page4: {
         title: 'Page 4',
-        componentList: ['warehouseDropdown', 'buttonGotoPO']
+        componentList: ['employeeRecordLink']
       },
 
 
@@ -39,7 +40,11 @@ const appConfig = {
       },
       pageSuccessInfo: {
         title: 'INFO',
-        componentList: ['receiptRecordLink']
+        componentList: ['receiptRecordLink', 'warehouseMenuIcon']
+      },
+      mainMenuPage: {
+        title: 'Select Menu',
+        componentList: ['warehouseMenuIcon', 'receivingMenuIcon', 'pickingMenuIcon', 'inventoryMenuIcon', 'mainMenuIcon', 'exitMenuIcon']
       }
 
     }

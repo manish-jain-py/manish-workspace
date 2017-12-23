@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-on:click="onClickFunction(entry)" v-for="entry in filteredData">
+    <tr v-on:click="onClickFunction(entry)" v-for="(entry) in filteredData" v-bind:class="entry.clicked ? 'clicked-row' : 'unclicked-row'">
       <td v-for="key in columns">
         {{ entry[key] }}
       </td>
@@ -42,7 +42,8 @@
       })
       return {
         sortKey: '',
-        sortOrders: sortOrders
+        sortOrders: sortOrders,
+        isClicked: {}
       }
     },
 
@@ -82,6 +83,10 @@
         this.sortOrders[key] = this.sortOrders[key] * -1
       },
       onClickFunction: function (entry) {
+        for (var row in this.filteredData){
+          this.filteredData[row].clicked = false
+        }
+        entry.clicked = true
         this.$emit('onClickFunction', entry)
       }
     }
@@ -115,13 +120,17 @@
     user-select: none;
   }
 
-  td {
+  .unclicked-row {
     background-color: lightgrey;
+  }
+
+  .clicked-row {
+    background-color: #607799;
   }
 
   tr{
     cursor: pointer;
-    border: 1px solid #607799;
+    border: 1px solid lightgrey;
   }
 
   th, td {

@@ -24,6 +24,7 @@
   import DataTable from '../components/base_components/DataTable.vue'
   import HiddenValuesSet from '../components/base_components/HiddenValuesSet.vue'
   import Anchor from '../components/base_components/Anchor.vue'
+  import MenuIcon from '../components/base_components/MenuIcon.vue'
   import AppHeader from '../components/base_components/AppHeader.vue'
 
   export default {
@@ -59,7 +60,8 @@
       AppHeader,
       DataTable,
       HiddenValuesSet,
-      Anchor
+      Anchor,
+      MenuIcon
     },
 
     created: function () {
