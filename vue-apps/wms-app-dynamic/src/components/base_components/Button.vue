@@ -105,6 +105,7 @@
               .then(response => {
                 var link = 'https://system.na2.netsuite.com/' + response.data
                 store.commit('updateRecordLink', link)
+                store.commit('resetDataRecord')
                 console.log(link)
               })
           }

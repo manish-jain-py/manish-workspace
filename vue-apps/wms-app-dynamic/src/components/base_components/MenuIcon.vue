@@ -1,7 +1,7 @@
 <template>
 
   <div class="col-md-6 form-group image-container">
-    <img @click="goToPage" class="image-thumbnail" v-bind:src="propsObject.src" alt="">
+    <img @click="goToPage" class="image-thumbnail" v-bind:src="propsObject.src" v-bind:alt="propsObject.label">
     <br>
     <span class="label label-primary"> {{ propsObject.label }} </span>
   </div>

@@ -30,7 +30,8 @@ export default new Vuex.Store({
         'standardFields': {},
         'sublistNames': [],
         'sublists': {},
-        'extraParams': {}
+        'extraParams': {},
+        'recordLink': ''
       }
     },
 
