@@ -10,7 +10,6 @@
 
   import settings from '../../config/settings.js'
 
-  import store from '../store'
   import vSelect from "vue-select"
 
   export default {
@@ -40,6 +39,7 @@
           }
         })
           .then(response => {
+            console.log(response.data)
             this.itemsList.push(...response.data)
           })
       },
@@ -48,7 +48,7 @@
         if (newValue !== this.propsObject.label) {
           if (this.propsObject.extraParam) {
             this.extraParamObject[this.propsObject.name] = newValue
-            store.commit('addExtraParamsToRecord', this.extraParamObject)
+            this.$store.commit('ADD_AUX_PARAMS_TO_RECORD', this.extraParamObject)
           }
         }
       }

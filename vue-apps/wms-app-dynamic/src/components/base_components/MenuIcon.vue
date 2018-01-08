@@ -20,7 +20,7 @@
 
     methods: {
       goToPage () {
-        store.commit('setCurrentPage', this.propsObject.targetPageId)
+        store.commit('SET_CURRENT_PAGE', this.propsObject.targetPageId)
       }
     }
 

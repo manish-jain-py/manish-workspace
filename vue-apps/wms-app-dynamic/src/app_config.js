@@ -24,7 +24,7 @@ const appConfig = {
 
       pageSelectWarehouse: {
         title: 'Select Your Location',
-        componentList: ['warehouseDropdown', 'buttonGotoPO']
+        componentList: ['warehouseDropdown', 'buttonGotoPO', 'buttonGotoTest']
       },
       pageSelectPO: {
         title: 'Select Purchase Order',
@@ -45,6 +45,10 @@ const appConfig = {
       mainMenuPage: {
         title: 'Select Menu',
         componentList: ['warehouseMenuIcon', 'receivingMenuIcon', 'pickingMenuIcon', 'inventoryMenuIcon', 'workOrderMenuIcon', 'exitMenuIcon']
+      },
+      testPage: {
+        title: 'Test Your Stuff Here',
+        componentList: ['sampleDatePicker']
       }
 
     }

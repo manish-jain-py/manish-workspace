@@ -14,7 +14,7 @@
 
     name: 'TextBox',
 
-    props: ['propsObject'],
+    props: ['propsObject']
 
   }
 

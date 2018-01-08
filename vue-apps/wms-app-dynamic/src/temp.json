@@ -1,0 +1,49 @@
+'warehouseDropdown': {
+
+  type: 'SingleSelect',
+
+  name: 'warehouse',
+
+  labelText: 'Select Warehouse',
+
+  placeholder: '',
+
+  recordName: 'aux',
+
+  fieldName: '',
+
+  sublistName: '',
+
+  events: {
+
+    onLoadPopulateData: {
+      actionType: 'Suitelet',
+      url: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=121&deploy=1',
+      params: [
+        {
+          paramKey: 'abc',
+          paramSource: 'state',
+          paramValue: 'dataRecord:standardField:field1'
+        }
+      ]
+    },
+
+    onSelect: {
+      actionType: 'Suitelet',
+      url: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=125&deploy=1',
+      params: [
+        {
+          paramKey: 'def',
+          paramSource: 'state',
+          paramValue: 'dataRecord:auxParam:field1'
+        },
+        {
+          paramKey: 'xyz',
+          paramSource: 'state',
+          paramValue: 'dataRecord:standardField:field3'
+        }
+      ]
+    }
+  }
+
+}

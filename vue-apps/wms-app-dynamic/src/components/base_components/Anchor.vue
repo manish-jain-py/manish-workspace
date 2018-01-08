@@ -8,8 +8,6 @@
 
 <script>
 
-  import store from '../store'
-
   export default {
 
     name: 'Anchor',
@@ -18,9 +16,7 @@
 
       href: function () {
         if (this.propsObject.linkType === 'recordLink') {
-          return store.state.dataRecord.recordLink
-        } else{
-          return this.propsObject.href
+          return this.$store.getters.getRecordLink
         }
       }
 

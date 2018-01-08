@@ -8,9 +8,6 @@
 
 <script>
 
-  import settings from '../../config/settings.js'
-
-  import store from '../store/index'
   import appConfig from '../../app_config.js'
   import components from '../../component_config.js'
 
@@ -29,7 +26,7 @@
 
     computed: {
       parentPage: function () {
-        return store.state.currentPage
+        return this.$store.state.currentPage
       },
     },
 
@@ -84,37 +81,32 @@
 
           // update dataRecord with recordType, fields and sublist values
           if (this.parentRecord) {
-            store.commit('addRecordType', this.parentRecord)
+            this.$store.commit('ADD_RECORD_TYPE', this.parentRecord)
           }
           if (this.standardFieldsObject) {
-            store.commit('addFieldsToRecord', this.standardFieldsObject)
+            this.$store.commit('ADD_FIELDS_TO_RECORD', this.standardFieldsObject)
           }
           if (this.sublistName) {
-            store.commit('addSublistToRecord', {sublistName: this.sublistName, sublistObject: this.sublistObject})
+            this.$store.commit('ADD_SUBLIST_TO_RECORD', {sublistName: this.sublistName, sublistObject: this.sublistObject})
           }
 
           if (this.propsObject.actionType == 'SubmitForm') {
-            axios.get(this.propsObject.submitAction, {
-              headers: {
-                "Authorization": settings.account.authorization
-              },
-              params: {
-                'dataRecord': store.state.dataRecord
-              }
+
+            // Dispatch save record action and pass mutation id
+            this.$store.dispatch({
+              type: 'SAVE_RECORD',
+              actionUrl: this.propsObject.submitAction,
+              params: { 'dataRecord': this.$store.state.dataRecord },
+              mutationId: 'UPDATE_RECORD_LINK'
             })
-              .then(response => {
-                var link = 'https://system.na2.netsuite.com/' + response.data
-                store.commit('updateRecordLink', link)
-                store.commit('resetDataRecord')
-                console.log(link)
-              })
+
           }
 
         }
 
         // Navigate to the target page
         var toPageId = this.propsObject.params.pageId
-        store.commit('setCurrentPage', toPageId)
+        this.$store.commit('SET_CURRENT_PAGE', toPageId)
 
       }
     }

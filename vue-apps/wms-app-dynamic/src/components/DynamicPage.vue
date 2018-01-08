@@ -2,7 +2,7 @@
 
   <div id="content">
     <app-header v-bind:pageTitle="title"></app-header>
-    <!--<div>{{ dataRecord }}</div>-->
+    <div>{{ dataRecord }}</div>
     <div v-for="component in pageComponents">
       <component :key="components[component].name" v-bind:is="components[component].type"
                  v-bind:propsObject="components[component]"></component>
@@ -26,6 +26,7 @@
   import Anchor from '../components/base_components/Anchor.vue'
   import MenuIcon from '../components/base_components/MenuIcon.vue'
   import AppHeader from '../components/base_components/AppHeader.vue'
+  import Date from '../components/base_components/Date.vue'
 
   export default {
 
@@ -61,12 +62,13 @@
       DataTable,
       HiddenValuesSet,
       Anchor,
-      MenuIcon
+      MenuIcon,
+      Date
     },
 
     created: function () {
       if (!store.state.currentPage) {
-        store.commit('setCurrentPage', appConfig.app.homePage)
+        store.commit('SET_CURRENT_PAGE', appConfig.app.homePage)
       }
     }
 

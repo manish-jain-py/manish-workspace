@@ -182,9 +182,9 @@ const components = {
   'employeeRecordLink': {
     type: 'Anchor',
     linkType: 'recordLink',
-    label: 'Employee Record'
+    label: 'Employee Record',
+    getDataActionParamLocation: 'dataRecord:auxParams:poTable'
   },
-
 
 
   'warehouseDropdown': {
@@ -222,8 +222,8 @@ const components = {
     sublistName: '',
     tableColumns: ['poId', 'name'],
     getDataAction: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=123&deploy=1',
-    getDataActionParamsType: 'extraParams',
-    getDataActionParamsKeys: ['warehouse'],
+    getDataActionParamsType: 'state',
+    getDataActionParamLocation: 'dataRecord:auxParams:warehouse',
     extraParam: true  // this value should be stored as extra param in the state
   },
 
@@ -250,8 +250,8 @@ const components = {
     sublistName: '',
     tableColumns: ['item', 'received', 'remaining'],
     getDataAction: 'https://system.na2.netsuite.com/app/site/hosting/scriptlet.nl?script=125&deploy=1',
-    getDataActionParamsType: 'extraParams',
-    getDataActionParamsKeys: ['poTable'],
+    getDataActionParamsType: 'state',
+    getDataActionParamLocation: 'dataRecord:auxParams:poTable',
     extraParam: true  // this value should be stored as extra param in the state
   },
 
@@ -360,7 +360,30 @@ const components = {
     label: 'Exit',
     src: 'https://system.netsuite.com/core/media/media.nl?id=204&c=4919667&h=257f4d357ae85bbf7dc1',
     targetPageId: 'pageSelectWarehouse'
-  }
+  },
+
+  'sampleDatePicker': {
+    type: "Date",
+    name: "sampleDatePicker",
+    model: "dataRecord.date",
+    label: 'Enter Date',
+    minDate: "October 13, 2017",
+    maxDate: "January 13, 2018",
+    dateType: 'range'
+  },
+
+  'buttonGotoTest': {
+    type: 'ActionButton',
+    name: 'buttonGotoTest',
+    label: 'Test',
+    actionType: 'Navigation',
+    params: {
+      pageId: 'testPage'
+    },
+    parentRecord: '',
+    fieldName: '',
+    sublistName: ''
+  },
 
 }
 
